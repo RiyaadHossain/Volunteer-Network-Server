@@ -18,12 +18,24 @@ async function run() {
   const volunteerCollection = client.db('VolunteerDB').collection('Volunteer')
 
   // 1. GET API
-  app.get('/volunteer', async (req, res) => {
+  app.get('/volunteers', async (req, res) => {
     const query = req.query
     const cursor = volunteerCollection.find(query)
     const result = await cursor.toArray()
     res.send(result)
   })
+
+  // 2. POST API
+  app.get('/volunteer', async (req, res) => {
+    const data = req.body
+    const result = await volunteerCollection.insertOne(data)
+    res.send(result)
+  })
+
+  // 3. DELETE API
+  
+
+  // 4. UPDATE API
 
   try {
     
